@@ -5,6 +5,7 @@ import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.ayhanunal.roundedcorner.databinding.ActivityMainBinding
@@ -18,20 +19,26 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        //view binding initialize
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
 
         binding.showBtn.setOnClickListener {
+            // show button is clicked
             val alertDialogBuilder = AlertDialog.Builder(this)
 
+            //inflate dialog_tmp.xml
             val inflater = layoutInflater
             var dialogView = inflater.inflate(R.layout.dialog_tmp, null)
-            alertDialogBuilder.setView(dialogView)
 
+            alertDialogBuilder.setView(dialogView) // alert dialog set View
+
+            //create alert dialog
             val alertDialog: AlertDialog = alertDialogBuilder.create()
             alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-            alertDialog.setCancelable(false)
+            alertDialog.setCancelable(false) // When we press the back button, we prevent it from closing
             alertDialog.setCanceledOnTouchOutside(false)
             alertDialog.show()
 
@@ -39,7 +46,6 @@ class MainActivity : AppCompatActivity() {
             closeButton.setOnClickListener {
                 alertDialog.cancel()
             }
-
 
 
         }
